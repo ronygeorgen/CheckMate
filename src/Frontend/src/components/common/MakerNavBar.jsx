@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { toast } from 'sonner'
 
 
-const MakerNavBar = ({ onUploadClick }) => {
+const MakerNavbar = ({ onUploadClick }) => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -47,4 +47,4 @@ const MakerNavBar = ({ onUploadClick }) => {
   )
 }
 
-export default MakerNavBar
+export default MakerNavbar;

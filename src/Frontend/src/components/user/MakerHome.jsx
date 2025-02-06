@@ -2,8 +2,8 @@ import { useState, useEffect } from "react"
 import api from "../services/api"
 import { toast } from "sonner"
 import { Eye } from "lucide-react"
-import MakerNavBar from "../common/MakerNavbar"
 import { EmptyState } from "../common/EmptyState"
+import MakerNavbar from "../common/MakerNavbar"
 
 const MakerHome = () => {
   const [activeView, setActiveView] = useState("employees") 
@@ -182,51 +182,11 @@ const MakerHome = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <MakerNavBar onUploadClick={() => setIsUploadModalOpen(true)} />
+      <MakerNavbar onUploadClick={() => setIsUploadModalOpen(true)} />
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-bold mb-6">Employee Management</h1>
         {renderContent()}
       </div>
-
-      {/* Table View */}
-      {/* <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border rounded-lg">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Uploaded By</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Checked By</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {employees.map((employee) => (
-              <tr key={employee.id}>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  {`${employee.first_name} ${employee.last_name}`}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">{employee.uploaded_by}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{employee.checked_by || "Not checked"}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`font-bold ${getStatusColor(employee.status)}`}>
-                    {employee.status}
-                  </span>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <button
-                    onClick={() => handleViewDetails(employee)}
-                    className="text-blue-500 hover:text-blue-700 flex items-center cursor-pointer"
-                  >
-                    <Eye className="w-4 h-4 mr-1" />
-                    View Details
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div> */}
 
       {/* Upload Modal */}
       {isUploadModalOpen && (
