@@ -3,7 +3,7 @@ import api from "../services/api"
 import { toast } from "sonner"
 import { Eye } from "lucide-react"
 import { EmptyState } from "../common/EmptyState"
-import MakerNavbar from "../common/MakerNavbar"
+import { MakerNavbar } from "../common/MakerNavbar"
 
 const MakerHome = () => {
   const [activeView, setActiveView] = useState("employees") 
