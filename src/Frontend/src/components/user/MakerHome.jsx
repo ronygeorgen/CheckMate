@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import api from "../services/api"
 import { toast } from "sonner"
 import { Eye } from "lucide-react"
-import MakerNavbar from "../common/MakerNavbar"
+import MakerNavBar from "../common/MakerNavbar"
 import { EmptyState } from "../common/EmptyState"
 
 const MakerHome = () => {
@@ -182,7 +182,7 @@ const MakerHome = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <MakerNavbar onUploadClick={() => setIsUploadModalOpen(true)} />
+      <MakerNavBar onUploadClick={() => setIsUploadModalOpen(true)} />
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-bold mb-6">Employee Management</h1>
         {renderContent()}
