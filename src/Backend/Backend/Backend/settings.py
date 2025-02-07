@@ -140,6 +140,15 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
 ]
 
+CORS_EXPOSE_HEADERS = ["Content-Type", "X-CSRFToken"]
+CORS_ALLOW_CREDENTIALS = True
+
+# Cookie settings
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'None'  # Important for cross-origin
+CSRF_COOKIE_SAMESITE = 'None'  # Important for cross-origin
+
 # CORS_ORIGIN_ALLOW_ALL = True
 
 
@@ -154,8 +163,8 @@ CORS_ALLOW_HEADERS = [
 
 
 
-MONGODB_URI = "mongodb+srv://ronygeorge:RnixMmxJm4ZoralU@cluster0.o5uvb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-DB_NAME = 'data_management_bw1'  # Replace with your actual database name
+MONGODB_URI = env('MONGODB_URI')  
+DB_NAME = env('DB_NAME')  
 
 # Connect to MongoDB Atlas using MongoEngine
 try:
