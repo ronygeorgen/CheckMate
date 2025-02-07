@@ -154,7 +154,7 @@ CORS_ALLOW_HEADERS = [
 
 
 
-MONGODB_URI = "mongodb+srv://ronygeorgeofficial65:64M6jq1f4kfz3ubW@cluster0.o5uvb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MONGODB_URI = "mongodb+srv://ronygeorge:RnixMmxJm4ZoralU@cluster0.o5uvb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 DB_NAME = 'data_management_bw1'  # Replace with your actual database name
 
 # Connect to MongoDB Atlas using MongoEngine
@@ -165,14 +165,10 @@ try:
         tls=True,
         tlsCAFile=certifi.where(),
         alias='default',
-        retryWrites=True,
-        w='majority',
-        serverSelectionTimeoutMS=5000,
-        connectTimeoutMS=5000
     )
-    print("Successfully connected to MongoDB Atlas with MongoEngine!")
+    print("Successfully connected to MongoDB Atlas!")
 except Exception as e:
-    print(f"MongoEngine Connection Error: {e}")
+    print(f"MongoDB Connection Error: {e}")
 
 
 
