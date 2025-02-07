@@ -155,7 +155,8 @@ connect(
     db=MONGODB_NAME,
     host=MONGODB_HOST,
     tls=True,
-    tlsCAFile=certifi.where()
+    tlsCAFile=certifi.where(),
+    alias='default'
 )
 
 
