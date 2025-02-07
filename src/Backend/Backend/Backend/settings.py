@@ -138,9 +138,15 @@ CORS_ALLOW_HEADERS = [
     "content-type",
     "user-agent",
     "x-csrftoken",
+    "content-disposition",  # Important for file uploads
 ]
 
-CORS_EXPOSE_HEADERS = ["Content-Type", "X-CSRFToken"]
+CORS_EXPOSE_HEADERS = [
+    "Content-Type", 
+    "X-CSRFToken", 
+    "Content-Disposition",  # For file download/upload responses
+    "Content-Length"        # Useful for upload progress
+]
 CORS_ALLOW_CREDENTIALS = True
 
 # Cookie settings
