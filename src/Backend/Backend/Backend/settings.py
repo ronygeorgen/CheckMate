@@ -17,6 +17,8 @@ import environ
 import cloudinary
 from mongoengine import connect
 import certifi
+from mongoengine.connection import get_db
+
 
 
 
@@ -151,13 +153,25 @@ CORS_ALLOW_HEADERS = [
 MONGODB_HOST = env('MONGODB_HOST')
 MONGODB_NAME = 'data_management_bw1'
 
-connect(
-    db=MONGODB_NAME,
-    host=MONGODB_HOST,
-    tls=True,
-    tlsCAFile=certifi.where(),
-    alias='default'
-)
+try:
+    connect(
+        db=MONGODB_NAME,
+        host=MONGODB_HOST,
+        tls=True,
+        tlsCAFile=certifi.where(),
+        alias='default',
+        directConnection=True,
+        retryWrites=True,
+        w='majority',
+        serverSelectionTimeoutMS=5000,  # 5 second timeout
+        connectTimeoutMS=5000,
+    )
+    # Test the connection
+    db = get_db()
+    db.command('ping')
+    print("Successfully connected to MongoDB Atlas!")
+except Exception as e:
+    print(f"MongoDB Connection Error: {e}")
 
 
 AUTHENTICATION_BACKENDS = [
