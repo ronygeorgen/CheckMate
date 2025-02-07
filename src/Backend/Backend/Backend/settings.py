@@ -16,7 +16,7 @@ import os
 import environ
 import cloudinary
 from mongoengine import connect
-import ssl
+import certifi
 
 
 
@@ -154,9 +154,8 @@ MONGODB_NAME = 'data_management_bw1'
 connect(
     db=MONGODB_NAME,
     host=MONGODB_HOST,
-    ssl=True,
-    ssl_cert_reqs=ssl.CERT_REQUIRED,
-    tlsAllowInvalidCertificates=False
+    tls=True,
+    tlsCAFile=certifi.where()
 )
 
 
