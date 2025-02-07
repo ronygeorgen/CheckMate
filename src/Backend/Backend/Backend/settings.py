@@ -115,7 +115,10 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://check-mate-uz9q.vercel.app",
+    "https://checkmate.ronygeorge.online"
+]
 
 # CORS_ALLOWED_ORIGINS = [
 #     "https://check-mate-uz9q.vercel.app",
