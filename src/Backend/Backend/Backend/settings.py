@@ -114,6 +114,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://check-mate-uz9q.vercel.app",
 ]
 
 CORS_ALLOW_METHODS = [
@@ -143,7 +144,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 
 
-MONGODB_HOST = 'mongodb://localhost:27017'
+MONGODB_HOST = env('MONGODB_HOST')
 MONGODB_NAME = 'data_management_bw1'
 
 from mongoengine import connect
