@@ -114,9 +114,9 @@ SIMPLE_JWT = {
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
+    "https://check-mate-uz9q.vercel.app",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://check-mate-uz9q.vercel.app",
 ]
 
 CORS_ALLOW_METHODS = [
