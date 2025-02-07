@@ -15,6 +15,9 @@ from datetime import timedelta
 import os
 import environ
 import cloudinary
+from mongoengine import connect
+import ssl
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -148,10 +151,12 @@ CORS_ALLOW_HEADERS = [
 MONGODB_HOST = env('MONGODB_HOST')
 MONGODB_NAME = 'data_management_bw1'
 
-from mongoengine import connect
 connect(
     db=MONGODB_NAME,
-    host=MONGODB_HOST
+    host=MONGODB_HOST,
+    ssl=True,
+    ssl_cert_reqs=ssl.CERT_REQUIRED,
+    tlsAllowInvalidCertificates=False
 )
 
 
