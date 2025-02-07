@@ -18,7 +18,8 @@ import cloudinary
 from mongoengine import connect
 import certifi
 from mongoengine.connection import get_db
-
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 
 
 
@@ -150,29 +151,44 @@ CORS_ALLOW_HEADERS = [
 
 
 
-MONGODB_HOST = env('MONGODB_HOST')
-MONGODB_NAME = 'data_management_bw1'
 
+
+
+uri = "mongodb+srv://ronygeorgeofficial65:64M6jq1f4kfz3ubW@cluster0.o5uvb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
+
+# Send a ping to confirm a successful connection
 try:
-    connect(
-        db=MONGODB_NAME,
-        host=MONGODB_HOST,
-        tls=True,
-        tlsCAFile=certifi.where(),
-        alias='default',
-        # Remove directConnection=True since we're using Atlas
-        retryWrites=True,
-        w='majority',
-        serverSelectionTimeoutMS=5000,
-        connectTimeoutMS=5000
-    )
-    # Test the connection
-    from mongoengine.connection import get_db
-    db = get_db()
-    db.command('ping')
-    print("Successfully connected to MongoDB Atlas!")
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
 except Exception as e:
-    print(f"MongoDB Connection Error: {e}")
+    print(e)
+
+# MONGODB_HOST = env('MONGODB_HOST')
+# MONGODB_NAME = 'data_management_bw1'
+
+# try:
+#     connect(
+#         db=MONGODB_NAME,
+#         host=MONGODB_HOST,
+#         tls=True,
+#         tlsCAFile=certifi.where(),
+#         alias='default',
+#         # Remove directConnection=True since we're using Atlas
+#         retryWrites=True,
+#         w='majority',
+#         serverSelectionTimeoutMS=5000,
+#         connectTimeoutMS=5000
+#     )
+#     # Test the connection
+#     from mongoengine.connection import get_db
+#     db = get_db()
+#     db.command('ping')
+#     print("Successfully connected to MongoDB Atlas!")
+# except Exception as e:
+#     print(f"MongoDB Connection Error: {e}")
 
 
 AUTHENTICATION_BACKENDS = [
