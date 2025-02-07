@@ -160,13 +160,14 @@ try:
         tls=True,
         tlsCAFile=certifi.where(),
         alias='default',
-        directConnection=True,
+        # Remove directConnection=True since we're using Atlas
         retryWrites=True,
         w='majority',
-        serverSelectionTimeoutMS=5000,  # 5 second timeout
-        connectTimeoutMS=5000,
+        serverSelectionTimeoutMS=5000,
+        connectTimeoutMS=5000
     )
     # Test the connection
+    from mongoengine.connection import get_db
     db = get_db()
     db.command('ping')
     print("Successfully connected to MongoDB Atlas!")
