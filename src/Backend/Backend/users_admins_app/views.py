@@ -65,8 +65,8 @@ class LoginView(APIView):
                 "tokens": tokens
             }
             response = JsonResponse(response_data, status=status.HTTP_200_OK)
-            response.set_cookie('access_token', tokens['access'], httponly=True, secure=True, samesite='None', domain='.vercel.app' )
-            response.set_cookie('refresh_token', tokens['refresh'], httponly=True, secure=True, samesite='None', domain='.vercel.app')
+            response.set_cookie('access_token', tokens['access'], httponly=True, secure=True, samesite='None')
+            response.set_cookie('refresh_token', tokens['refresh'], httponly=True, secure=True, samesite='None')
             return response
             
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
