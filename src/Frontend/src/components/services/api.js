@@ -4,7 +4,7 @@ import { logoutUser } from '../../redux/features/authSlice'
 
 
 const api = axios.create({
-   baseURL: 'http://checkmate.ronygeorge.online/',
+   baseURL: 'https://checkmate.ronygeorge.online/',
     withCredentials: true,
 })
 
