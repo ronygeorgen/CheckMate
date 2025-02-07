@@ -18,8 +18,6 @@ import cloudinary
 from mongoengine import connect
 import certifi
 from mongoengine.connection import get_db
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
 
 
 
@@ -154,41 +152,28 @@ CORS_ALLOW_HEADERS = [
 
 
 
-uri = "mongodb+srv://ronygeorgeofficial65:64M6jq1f4kfz3ubW@cluster0.o5uvb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
-# Create a new client and connect to the server
-client = MongoClient(uri, server_api=ServerApi('1'))
 
-# Send a ping to confirm a successful connection
+MONGODB_URI = "mongodb+srv://ronygeorgeofficial65:64M6jq1f4kfz3ubW@cluster0.o5uvb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+DB_NAME = 'data_management_bw1'  # Replace with your actual database name
+
+# Connect to MongoDB Atlas using MongoEngine
 try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
+    connect(
+        db=DB_NAME,
+        host=MONGODB_URI,
+        tls=True,
+        tlsCAFile=certifi.where(),
+        alias='default',
+        retryWrites=True,
+        w='majority',
+        serverSelectionTimeoutMS=5000,
+        connectTimeoutMS=5000
+    )
+    print("Successfully connected to MongoDB Atlas with MongoEngine!")
 except Exception as e:
-    print(e)
+    print(f"MongoEngine Connection Error: {e}")
 
-# MONGODB_HOST = env('MONGODB_HOST')
-# MONGODB_NAME = 'data_management_bw1'
-
-# try:
-#     connect(
-#         db=MONGODB_NAME,
-#         host=MONGODB_HOST,
-#         tls=True,
-#         tlsCAFile=certifi.where(),
-#         alias='default',
-#         # Remove directConnection=True since we're using Atlas
-#         retryWrites=True,
-#         w='majority',
-#         serverSelectionTimeoutMS=5000,
-#         connectTimeoutMS=5000
-#     )
-#     # Test the connection
-#     from mongoengine.connection import get_db
-#     db = get_db()
-#     db.command('ping')
-#     print("Successfully connected to MongoDB Atlas!")
-# except Exception as e:
-#     print(f"MongoDB Connection Error: {e}")
 
 
 AUTHENTICATION_BACKENDS = [
