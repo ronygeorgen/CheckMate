@@ -153,8 +153,8 @@ CORS_ALLOW_CREDENTIALS = True
 # Cookie settings
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SAMESITE = 'None'  # Important for cross-origin
-CSRF_COOKIE_SAMESITE = 'None'  # Important for cross-origin
+SESSION_COOKIE_SAMESITE = 'strict'  # Important for cross-origin
+CSRF_COOKIE_SAMESITE = 'strict'  # Important for cross-origin
 
 # CORS_ORIGIN_ALLOW_ALL = True
 
