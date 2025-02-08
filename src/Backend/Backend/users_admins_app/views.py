@@ -11,6 +11,9 @@ from rest_framework.permissions import BasePermission
 from .jwt_middleware import JWTAuthentication
 from .models import Account, Employee, CustomerStatus
 from rest_framework.parsers import MultiPartParser, FormParser
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
 # Create your views here.
 
 logger = logging.getLogger(__name__)
@@ -65,8 +68,8 @@ class LoginView(APIView):
                 "tokens": tokens
             }
             response = JsonResponse(response_data, status=status.HTTP_200_OK)
-            response.set_cookie('access_token', tokens['access'], httponly=True, secure=True, samesite='strict')
-            response.set_cookie('refresh_token', tokens['refresh'], httponly=True, secure=True, samesite='strict')
+            response.set_cookie('access_token', tokens['access'], httponly=True, secure=True, samesite='None')
+            response.set_cookie('refresh_token', tokens['refresh'], httponly=True, secure=True, samesite='None')
             return response
             
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -162,7 +165,8 @@ class GetCheckerMakers(APIView):
 class IsMaker(BasePermission):
     def has_permission(self, request, view):
         return request.user and request.user.is_maker
-    
+
+@method_decorator(csrf_exempt, name='dispatch')
 class EmployeeUploadView(APIView):
     permission_classes = [IsAuthenticated, IsMaker]
     parser_classes = [MultiPartParser, FormParser]
