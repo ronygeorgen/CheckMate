@@ -260,7 +260,6 @@ class LogoutView(APIView):
     def post(self, request):
         response = Response({"message": "Logged out successfully"}, status=status.HTTP_200_OK)
         
-        # Manually set the cookies to expire with the correct attributes
         response.set_cookie(
             'access_token',
             value='',
