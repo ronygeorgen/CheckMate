@@ -259,6 +259,27 @@ class EmployeeStatusUpdateView(APIView):
 class LogoutView(APIView):
     def post(self, request):
         response = Response({"message": "Logged out successfully"}, status=status.HTTP_200_OK)
-        response.delete_cookie('access_token')
-        response.delete_cookie('refresh_token')
+        
+        # Manually set the cookies to expire with the correct attributes
+        response.set_cookie(
+            'access_token',
+            value='',
+            max_age=0,
+            expires='Thu, 01 Jan 1970 00:00:00 GMT',
+            secure=True,
+            httponly=True,
+            samesite='None',
+            path='/'
+        )
+        response.set_cookie(
+            'refresh_token',
+            value='',
+            max_age=0,
+            expires='Thu, 01 Jan 1970 00:00:00 GMT',
+            secure=True,
+            httponly=True,
+            samesite='None',
+            path='/'
+        )
+        
         return response
