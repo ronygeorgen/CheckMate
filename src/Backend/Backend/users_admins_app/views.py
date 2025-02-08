@@ -166,7 +166,7 @@ class IsMaker(BasePermission):
     def has_permission(self, request, view):
         return request.user and request.user.is_maker
 
-@method_decorator(csrf_exempt, name='dispatch')
+# @method_decorator(csrf_exempt, name='dispatch')
 class EmployeeUploadView(APIView):
     permission_classes = [IsAuthenticated, IsMaker]
     parser_classes = [MultiPartParser, FormParser]
